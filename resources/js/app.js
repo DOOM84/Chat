@@ -8,6 +8,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vue from 'vue'
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
 
 /**
  * The following block of code may be used to automatically register your
@@ -17,7 +20,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('message', require('./components/message.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -32,5 +35,22 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data:{
+        message:'',
+        chat: {
+            message: []
+        }
+    },
+    methods:{
+
+        send(){
+            if (this.message.length != 0) {
+                this.chat.message.push(this.message);
+                this.message = '';
+            }
+
+        }
+
+    }
 });

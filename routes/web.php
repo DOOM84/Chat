@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('chat', function (){
-    return view('chat');
-});
+Route::get('chat', 'ChatController@chat');
+Route::post('send', 'ChatController@send');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
